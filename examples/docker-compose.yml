@@ -1,0 +1,9 @@
+services:
+  rival-regulatory-mcp:
+    build:
+      context: ..
+    environment:
+      RIVAL_API_KEY: ${RIVAL_API_KEY}
+      RIVAL_API_BASE_URL: ${RIVAL_API_BASE_URL:-https://api.tryrival.ai}
+    stdin_open: true
+    tty: false

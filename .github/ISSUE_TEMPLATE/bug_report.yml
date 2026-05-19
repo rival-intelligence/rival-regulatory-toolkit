@@ -1,0 +1,29 @@
+name: Bug report
+description: Report a bug in the toolkit
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Include commands, configuration, and fixture/API mode.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: 0.1.0
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs
+      description: Remove secrets before pasting logs.

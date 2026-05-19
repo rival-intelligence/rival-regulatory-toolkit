@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "rival-regulatory": {
+      "command": "npx",
+      "args": ["-y", "@rival-intelligence/regulatory-toolkit", "mcp"],
+      "env": {
+        "RIVAL_API_KEY": "rv_live_replace_me",
+        "RIVAL_API_BASE_URL": "https://api.tryrival.ai"
+      }
+    }
+  }
+}
