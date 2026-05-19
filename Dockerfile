@@ -16,7 +16,7 @@ LABEL org.opencontainers.image.source="https://github.com/rival-intelligence/riv
 LABEL org.opencontainers.image.description="MCP server for Rival's source-grounded regulatory retrieval API"
 
 COPY package*.json ./
-RUN npm install --omit=dev
+RUN npm install --omit=dev --ignore-scripts
 
 COPY --from=build /app/dist ./dist
 COPY fixtures ./fixtures
