@@ -1,6 +1,6 @@
 {
   "name": "@tryrival/regulatory-toolkit",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "SDK, CLI, MCP server, and schemas for Rival's source-grounded regulatory retrieval API.",
   "type": "module",
   "license": "Apache-2.0",
@@ -31,6 +31,8 @@
   ],
   "bin": {
     "regulatory-toolkit": "dist/cli/index.js",
+    "regulatory-toolkit-mcp": "dist/mcp/server.js",
+    "regulatory-toolkit-cli": "dist/cli/index.js",
     "rival-regulatory": "dist/cli/index.js",
     "rival-regulatory-mcp": "dist/mcp/server.js"
   },
