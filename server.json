@@ -2,16 +2,16 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.rival-intelligence/rival-regulatory-toolkit",
   "title": "Rival Regulatory Toolkit",
-  "description": "Read-only MCP server for searching regulatory source material, retrieving source text, tracing citations, listing authorities, and inspecting recent filings through Rival's source-grounded regulatory API.",
+  "description": "Read-only regulatory source retrieval, citation tracing, authority metadata, and recent filings.",
   "repository": {
     "url": "https://github.com/rival-intelligence/rival-regulatory-toolkit",
     "source": "github"
   },
-  "version": "0.1.2",
+  "version": "0.1.3",
   "packages": [
     {
       "registryType": "oci",
-      "identifier": "ghcr.io/rival-intelligence/rival-regulatory-toolkit:0.1.2",
+      "identifier": "ghcr.io/rival-intelligence/rival-regulatory-toolkit:0.1.3",
       "transport": {
         "type": "stdio"
       },
