@@ -2,7 +2,7 @@
   "mcpServers": {
     "rival-regulatory-fixture": {
       "command": "npx",
-      "args": ["-y", "github:rival-intelligence/rival-regulatory-toolkit", "mcp"],
+      "args": ["-y", "@rival-intelligence/regulatory-toolkit", "mcp"],
       "env": {
         "RIVAL_FIXTURE_MODE": "true"
       }

@@ -6,13 +6,13 @@ The goal is for agents and developers to find the toolkit through the places the
 
 1. Keep `package.json` `mcpName` aligned with `server.json` `name`.
 2. Keep `server.json` version aligned with `package.json` version.
-3. Confirm the source install can run with:
+3. Confirm the npm install can run with:
 
    ```sh
-   RIVAL_FIXTURE_MODE=true npx -y github:rival-intelligence/rival-regulatory-toolkit mcp
+   RIVAL_FIXTURE_MODE=true npx -y @rival-intelligence/regulatory-toolkit mcp
    ```
 
-4. Publish the npm package as `@rival-intelligence/regulatory-toolkit` when npm org access is available.
+4. Publish the npm package as `@rival-intelligence/regulatory-toolkit`.
 5. Confirm the package can run with:
 
    ```sh
