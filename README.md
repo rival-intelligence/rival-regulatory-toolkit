@@ -78,7 +78,13 @@ rival-regulatory search "pipeline corrosion" --fixture
 
 ## MCP Server
 
-Run directly:
+Run from the public GitHub repo:
+
+```sh
+RIVAL_FIXTURE_MODE=true npx -y github:rival-intelligence/rival-regulatory-toolkit mcp
+```
+
+After the npm package is published:
 
 ```sh
 npx @rival-intelligence/regulatory-toolkit mcp
@@ -91,7 +97,7 @@ Claude Desktop example:
   "mcpServers": {
     "rival-regulatory": {
       "command": "npx",
-  "args": ["-y", "@rival-intelligence/regulatory-toolkit", "mcp"],
+      "args": ["-y", "github:rival-intelligence/rival-regulatory-toolkit", "mcp"],
       "env": {
         "RIVAL_API_KEY": "rv_live_...",
         "RIVAL_API_BASE_URL": "https://api.tryrival.ai"

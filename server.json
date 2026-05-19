@@ -10,9 +10,8 @@
   "version": "0.1.0",
   "packages": [
     {
-      "registryType": "npm",
-      "identifier": "@rival-intelligence/regulatory-toolkit",
-      "version": "0.1.0",
+      "registryType": "oci",
+      "identifier": "ghcr.io/rival-intelligence/rival-regulatory-toolkit:0.1.0",
       "transport": {
         "type": "stdio"
       },
