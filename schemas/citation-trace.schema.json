@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rival-intelligence/rival-regulatory-toolkit/schemas/citation-trace.schema.json",
+  "title": "CitationTraceResponse",
+  "type": "object",
+  "required": ["citation", "normalizedCitation", "matches", "relatedSources", "trace", "generatedAt"],
+  "additionalProperties": false,
+  "properties": {
+    "citation": { "type": "string" },
+    "normalizedCitation": { "type": "string" },
+    "matches": {
+      "type": "array",
+      "items": { "$ref": "./source.schema.json" }
+    },
+    "relatedSources": {
+      "type": "array",
+      "items": { "$ref": "./source.schema.json" }
+    },
+    "trace": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "status"],
+        "additionalProperties": false,
+        "properties": {
+          "label": { "type": "string" },
+          "sourceId": { "type": "string" },
+          "citation": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["matched", "related", "not_found"]
+          },
+          "detail": { "type": "string" }
+        }
+      }
+    },
+    "generatedAt": { "type": "string", "format": "date-time" }
+  }
+}

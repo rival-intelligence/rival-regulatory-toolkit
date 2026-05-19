@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rival-intelligence/rival-regulatory-toolkit/schemas/source.schema.json",
+  "title": "RegulatorySource",
+  "type": "object",
+  "required": ["id", "citation", "title", "sourceType", "url", "jurisdiction", "authority"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string" },
+    "citation": { "type": "string" },
+    "title": { "type": "string" },
+    "sourceType": {
+      "type": "string",
+      "enum": ["fr", "cfr", "tac", "sibr", "government_source", "source_document", "dod_contracting"]
+    },
+    "url": { "type": "string", "format": "uri" },
+    "jurisdiction": { "type": "string" },
+    "authority": { "type": "string" },
+    "authoritySlug": { "type": "string" },
+    "regulatoryDomain": { "type": "string" },
+    "sourceFamily": { "type": "string" },
+    "publicationDate": { "type": ["string", "null"], "format": "date" },
+    "effectiveDate": { "type": ["string", "null"], "format": "date" },
+    "versionLabel": { "type": ["string", "null"] },
+    "content": { "type": "string" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rival-intelligence/rival-regulatory-toolkit/schemas/authority.schema.json",
+  "title": "RegulatoryAuthority",
+  "type": "object",
+  "required": ["slug", "name", "jurisdiction", "sourceFamilies", "domains"],
+  "additionalProperties": false,
+  "properties": {
+    "slug": { "type": "string" },
+    "name": { "type": "string" },
+    "jurisdiction": { "type": "string" },
+    "issuingAuthority": { "type": "string" },
+    "sourceFamilies": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "domains": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "latestDate": { "type": ["string", "null"], "format": "date" },
+    "sourceCount": { "type": "integer" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rival-intelligence/rival-regulatory-toolkit/schemas/search-result.schema.json",
+  "title": "SearchResponse",
+  "type": "object",
+  "required": ["query", "results", "generatedAt"],
+  "additionalProperties": false,
+  "properties": {
+    "query": { "type": "string" },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source", "excerpts", "score", "matchType"],
+        "additionalProperties": false,
+        "properties": {
+          "source": { "$ref": "./source.schema.json" },
+          "excerpts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["sourceId", "citation", "text"],
+              "additionalProperties": false,
+              "properties": {
+                "chunkId": { "type": "string" },
+                "sourceId": { "type": "string" },
+                "citation": { "type": "string" },
+                "text": { "type": "string" },
+                "score": { "type": "number" }
+              }
+            }
+          },
+          "score": { "type": "number" },
+          "matchType": {
+            "type": "string",
+            "enum": ["exact_citation", "keyword", "semantic", "hybrid"]
+          }
+        }
+      }
+    },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "nextCursor": { "type": ["string", "null"] }
+  }
+}

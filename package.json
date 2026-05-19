@@ -1,0 +1,58 @@
+{
+  "name": "@rival-intelligence/regulatory-toolkit",
+  "version": "0.1.0",
+  "description": "SDK, CLI, MCP server, and schemas for Rival's source-grounded regulatory retrieval API.",
+  "type": "module",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rival-intelligence/rival-regulatory-toolkit.git"
+  },
+  "homepage": "https://github.com/rival-intelligence/rival-regulatory-toolkit#readme",
+  "bugs": {
+    "url": "https://github.com/rival-intelligence/rival-regulatory-toolkit/issues"
+  },
+  "keywords": [
+    "rival",
+    "regulatory",
+    "compliance",
+    "mcp",
+    "agents",
+    "sdk",
+    "citations"
+  ],
+  "bin": {
+    "regulatory-toolkit": "./dist/cli/index.js",
+    "rival-regulatory": "./dist/cli/index.js",
+    "rival-regulatory-mcp": "./dist/mcp/server.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "schemas",
+    "openapi",
+    "fixtures",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "rm -rf dist",
+    "dev:mcp": "tsx src/mcp/server.ts",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.14",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

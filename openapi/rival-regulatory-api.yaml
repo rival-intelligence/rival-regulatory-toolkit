@@ -1,0 +1,420 @@
+openapi: 3.1.0
+info:
+  title: Rival Regulatory Retrieval API
+  version: 0.1.0
+  summary: Read-only source-grounded regulatory retrieval API for agents and developer systems.
+  description: |
+    This contract describes the read-only API surface used by the Rival Regulatory Toolkit.
+    Mutating compliance workflows, evidence requests, workspace actions, filings, and task
+    creation are intentionally outside this public contract.
+  contact:
+    name: Rival
+    url: https://tryrival.ai/contact
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: https://api.tryrival.ai
+    description: Managed Rival API
+security:
+  - bearerAuth: []
+tags:
+  - name: Search
+  - name: Sources
+  - name: Citations
+  - name: Authorities
+  - name: Filings
+paths:
+  /api/v1/search:
+    get:
+      tags: [Search]
+      operationId: searchRegulatoryCorpus
+      summary: Search regulatory source material.
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Natural language query or citation.
+        - name: authority
+          in: query
+          schema:
+            type: string
+          description: Optional authority slug, such as phmsa, epa, rrc, or tceq.
+        - name: jurisdiction
+          in: query
+          schema:
+            type: string
+          description: Optional jurisdiction filter, such as federal or texas.
+        - name: source_type
+          in: query
+          schema:
+            type: string
+          description: Optional source type filter, such as cfr, fr, tac, or sibr.
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 10
+        - name: cursor
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Search response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/v1/sources/{source_id}:
+    get:
+      tags: [Sources]
+      operationId: retrieveSourceText
+      summary: Retrieve source text and metadata.
+      parameters:
+        - name: source_id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Rival source id.
+      responses:
+        '200':
+          description: Source text response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SourceTextResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /api/v1/citations/trace:
+    get:
+      tags: [Citations]
+      operationId: traceCitation
+      summary: Trace a citation to source records.
+      parameters:
+        - name: citation
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Citation to trace, such as 49 CFR 195.573.
+        - name: jurisdiction
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Citation trace response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CitationTraceResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/v1/authorities:
+    get:
+      tags: [Authorities]
+      operationId: listAuthorities
+      summary: List regulatory authorities available in the corpus.
+      parameters:
+        - name: jurisdiction
+          in: query
+          schema:
+            type: string
+        - name: domain
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Authorities response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthoritiesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/v1/filings/recent:
+    get:
+      tags: [Filings]
+      operationId: getRecentFilings
+      summary: Return recent indexed filings.
+      parameters:
+        - name: authority
+          in: query
+          schema:
+            type: string
+        - name: jurisdiction
+          in: query
+          schema:
+            type: string
+        - name: source_type
+          in: query
+          schema:
+            type: string
+        - name: date_from
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: date_to
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 50
+            default: 10
+      responses:
+        '200':
+          description: Recent filings response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecentFilingsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: API key
+  responses:
+    Unauthorized:
+      description: Missing, invalid, or unauthorized API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Source not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    RegulatorySource:
+      type: object
+      required: [id, citation, title, sourceType, url, jurisdiction, authority]
+      additionalProperties: false
+      properties:
+        id:
+          type: string
+        citation:
+          type: string
+        title:
+          type: string
+        sourceType:
+          type: string
+          enum: [fr, cfr, tac, sibr, government_source, source_document, dod_contracting]
+        url:
+          type: string
+          format: uri
+        jurisdiction:
+          type: string
+        authority:
+          type: string
+        authoritySlug:
+          type: string
+        regulatoryDomain:
+          type: string
+        sourceFamily:
+          type: string
+        publicationDate:
+          type: [string, 'null']
+          format: date
+        effectiveDate:
+          type: [string, 'null']
+          format: date
+        versionLabel:
+          type: [string, 'null']
+        content:
+          type: string
+        metadata:
+          type: object
+          additionalProperties: true
+    SearchExcerpt:
+      type: object
+      required: [sourceId, citation, text]
+      additionalProperties: false
+      properties:
+        chunkId:
+          type: string
+        sourceId:
+          type: string
+        citation:
+          type: string
+        text:
+          type: string
+        score:
+          type: number
+    SearchResult:
+      type: object
+      required: [source, excerpts, score, matchType]
+      additionalProperties: false
+      properties:
+        source:
+          $ref: '#/components/schemas/RegulatorySource'
+        excerpts:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchExcerpt'
+        score:
+          type: number
+        matchType:
+          type: string
+          enum: [exact_citation, keyword, semantic, hybrid]
+    SearchResponse:
+      type: object
+      required: [query, results, generatedAt]
+      additionalProperties: false
+      properties:
+        query:
+          type: string
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchResult'
+        generatedAt:
+          type: string
+          format: date-time
+        nextCursor:
+          type: [string, 'null']
+    SourceTextResponse:
+      type: object
+      required: [source, content, generatedAt]
+      additionalProperties: false
+      properties:
+        source:
+          $ref: '#/components/schemas/RegulatorySource'
+        content:
+          type: string
+        generatedAt:
+          type: string
+          format: date-time
+    CitationTraceStep:
+      type: object
+      required: [label, status]
+      additionalProperties: false
+      properties:
+        label:
+          type: string
+        sourceId:
+          type: string
+        citation:
+          type: string
+        status:
+          type: string
+          enum: [matched, related, not_found]
+        detail:
+          type: string
+    CitationTraceResponse:
+      type: object
+      required: [citation, normalizedCitation, matches, relatedSources, trace, generatedAt]
+      additionalProperties: false
+      properties:
+        citation:
+          type: string
+        normalizedCitation:
+          type: string
+        matches:
+          type: array
+          items:
+            $ref: '#/components/schemas/RegulatorySource'
+        relatedSources:
+          type: array
+          items:
+            $ref: '#/components/schemas/RegulatorySource'
+        trace:
+          type: array
+          items:
+            $ref: '#/components/schemas/CitationTraceStep'
+        generatedAt:
+          type: string
+          format: date-time
+    RegulatoryAuthority:
+      type: object
+      required: [slug, name, jurisdiction, sourceFamilies, domains]
+      additionalProperties: false
+      properties:
+        slug:
+          type: string
+        name:
+          type: string
+        jurisdiction:
+          type: string
+        issuingAuthority:
+          type: string
+        sourceFamilies:
+          type: array
+          items:
+            type: string
+        domains:
+          type: array
+          items:
+            type: string
+        latestDate:
+          type: [string, 'null']
+          format: date
+        sourceCount:
+          type: integer
+        metadata:
+          type: object
+          additionalProperties: true
+    AuthoritiesResponse:
+      type: object
+      required: [authorities, generatedAt]
+      additionalProperties: false
+      properties:
+        authorities:
+          type: array
+          items:
+            $ref: '#/components/schemas/RegulatoryAuthority'
+        generatedAt:
+          type: string
+          format: date-time
+    RecentFiling:
+      type: object
+      required: [source]
+      additionalProperties: false
+      properties:
+        source:
+          $ref: '#/components/schemas/RegulatorySource'
+        summary:
+          type: string
+    RecentFilingsResponse:
+      type: object
+      required: [filings, generatedAt]
+      additionalProperties: false
+      properties:
+        filings:
+          type: array
+          items:
+            $ref: '#/components/schemas/RecentFiling'
+        generatedAt:
+          type: string
+          format: date-time
+    ErrorResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        code:
+          type: string

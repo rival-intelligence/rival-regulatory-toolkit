@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rival-intelligence/rival-regulatory-toolkit/schemas/tool-manifest.schema.json",
+  "title": "RivalToolManifest",
+  "type": "object",
+  "required": ["toolId", "allowedTaskTypes", "requiredInputs", "outputSchema", "sideEffectLevel", "humanGateRequired"],
+  "additionalProperties": false,
+  "properties": {
+    "toolId": { "type": "string" },
+    "allowedTaskTypes": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "requiredInputs": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "outputSchema": { "type": "string" },
+    "sideEffectLevel": {
+      "type": "string",
+      "enum": ["none", "read", "draft", "workspace_write", "external_action"]
+    },
+    "humanGateRequired": { "type": "boolean" },
+    "verificationPolicy": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}

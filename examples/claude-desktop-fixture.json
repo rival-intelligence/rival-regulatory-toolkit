@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "rival-regulatory-fixture": {
+      "command": "npx",
+      "args": ["-y", "@rival-intelligence/regulatory-toolkit", "mcp"],
+      "env": {
+        "RIVAL_FIXTURE_MODE": "true"
+      }
+    }
+  }
+}

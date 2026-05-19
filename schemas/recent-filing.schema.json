@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rival-intelligence/rival-regulatory-toolkit/schemas/recent-filing.schema.json",
+  "title": "RecentFilingsResponse",
+  "type": "object",
+  "required": ["filings", "generatedAt"],
+  "additionalProperties": false,
+  "properties": {
+    "filings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["source"],
+        "additionalProperties": false,
+        "properties": {
+          "source": { "$ref": "./source.schema.json" },
+          "summary": { "type": "string" }
+        }
+      }
+    },
+    "generatedAt": { "type": "string", "format": "date-time" }
+  }
+}
