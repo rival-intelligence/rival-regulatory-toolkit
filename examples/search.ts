@@ -1,4 +1,4 @@
-import { RivalRegulatoryClient } from '@rival-intelligence/regulatory-toolkit';
+import { RivalRegulatoryClient } from '@tryrival/regulatory-toolkit';
 
 const client = new RivalRegulatoryClient({
   apiKey: process.env.RIVAL_API_KEY,

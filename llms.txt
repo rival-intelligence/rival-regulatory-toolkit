@@ -35,11 +35,11 @@ This toolkit is read-only. It does not submit filings, alter compliance records,
 ## Install
 
 ```sh
-npx -y @rival-intelligence/regulatory-toolkit mcp
+npx -y @tryrival/regulatory-toolkit mcp
 ```
 
 Fixture mode:
 
 ```sh
-RIVAL_FIXTURE_MODE=true npx -y @rival-intelligence/regulatory-toolkit mcp
+RIVAL_FIXTURE_MODE=true npx -y @tryrival/regulatory-toolkit mcp
 ```

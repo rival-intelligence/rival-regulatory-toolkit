@@ -21,7 +21,7 @@ This repository is the developer and agent connectivity layer for Rival. It is i
 ## Install
 
 ```sh
-npm install @rival-intelligence/regulatory-toolkit
+npm install @tryrival/regulatory-toolkit
 ```
 
 For local development from source:
@@ -47,7 +47,7 @@ export RIVAL_FIXTURE_MODE=true
 ## TypeScript Client
 
 ```ts
-import { RivalRegulatoryClient } from '@rival-intelligence/regulatory-toolkit';
+import { RivalRegulatoryClient } from '@tryrival/regulatory-toolkit';
 
 const rival = new RivalRegulatoryClient({
   apiKey: process.env.RIVAL_API_KEY,
@@ -81,7 +81,7 @@ rival-regulatory search "pipeline corrosion" --fixture
 Run from npm:
 
 ```sh
-npx -y @rival-intelligence/regulatory-toolkit mcp
+npx -y @tryrival/regulatory-toolkit mcp
 ```
 
 Run from the public GitHub repo:
@@ -93,7 +93,7 @@ RIVAL_FIXTURE_MODE=true npx -y github:rival-intelligence/rival-regulatory-toolki
 Fixture mode:
 
 ```sh
-RIVAL_FIXTURE_MODE=true npx -y @rival-intelligence/regulatory-toolkit mcp
+RIVAL_FIXTURE_MODE=true npx -y @tryrival/regulatory-toolkit mcp
 ```
 
 Claude Desktop example:
@@ -103,7 +103,7 @@ Claude Desktop example:
   "mcpServers": {
     "rival-regulatory": {
       "command": "npx",
-      "args": ["-y", "@rival-intelligence/regulatory-toolkit", "mcp"],
+      "args": ["-y", "@tryrival/regulatory-toolkit", "mcp"],
       "env": {
         "RIVAL_API_KEY": "rv_live_...",
         "RIVAL_API_BASE_URL": "https://api.tryrival.ai"

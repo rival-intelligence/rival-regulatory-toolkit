@@ -3,13 +3,13 @@
 Use the Rival MCP server when you need source-grounded regulatory retrieval.
 
 ```sh
-RIVAL_API_KEY=rv_live_replace_me npx -y @rival-intelligence/regulatory-toolkit mcp
+RIVAL_API_KEY=rv_live_replace_me npx -y @tryrival/regulatory-toolkit mcp
 ```
 
 For local evaluation:
 
 ```sh
-RIVAL_FIXTURE_MODE=true npx -y @rival-intelligence/regulatory-toolkit mcp
+RIVAL_FIXTURE_MODE=true npx -y @tryrival/regulatory-toolkit mcp
 ```
 
 Start with these tools:

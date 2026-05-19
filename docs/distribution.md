@@ -9,14 +9,14 @@ The goal is for agents and developers to find the toolkit through the places the
 3. Confirm the npm install can run with:
 
    ```sh
-   RIVAL_FIXTURE_MODE=true npx -y @rival-intelligence/regulatory-toolkit mcp
+   RIVAL_FIXTURE_MODE=true npx -y @tryrival/regulatory-toolkit mcp
    ```
 
-4. Publish the npm package as `@rival-intelligence/regulatory-toolkit`.
+4. Publish the npm package as `@tryrival/regulatory-toolkit`.
 5. Confirm the package can run with:
 
    ```sh
-   npx -y @rival-intelligence/regulatory-toolkit mcp
+   npx -y @tryrival/regulatory-toolkit mcp
    ```
 
 ## Primary Channels
@@ -71,7 +71,7 @@ Aggregators index tool names, descriptions, input schemas, package metadata, and
 Update `tryrival.ai/for-agents` to include:
 
 - GitHub repo link
-- `npx -y @rival-intelligence/regulatory-toolkit mcp`
+- `npx -y @tryrival/regulatory-toolkit mcp`
 - fixture-mode example
 - safety boundary: read-only source retrieval, managed API access for production
 

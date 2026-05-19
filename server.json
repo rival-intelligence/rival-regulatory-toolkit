@@ -11,7 +11,7 @@
   "packages": [
     {
       "registryType": "npm",
-      "identifier": "@rival-intelligence/regulatory-toolkit",
+      "identifier": "@tryrival/regulatory-toolkit",
       "version": "0.1.4",
       "transport": {
         "type": "stdio"

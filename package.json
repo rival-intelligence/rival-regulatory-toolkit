@@ -1,5 +1,5 @@
 {
-  "name": "@rival-intelligence/regulatory-toolkit",
+  "name": "@tryrival/regulatory-toolkit",
   "version": "0.1.4",
   "description": "SDK, CLI, MCP server, and schemas for Rival's source-grounded regulatory retrieval API.",
   "type": "module",
