@@ -11,6 +11,9 @@ RUN npm run build
 FROM node:22-alpine AS runtime
 WORKDIR /app
 ENV NODE_ENV=production
+LABEL io.modelcontextprotocol.server.name="io.github.rival-intelligence/rival-regulatory-toolkit"
+LABEL org.opencontainers.image.source="https://github.com/rival-intelligence/rival-regulatory-toolkit"
+LABEL org.opencontainers.image.description="MCP server for Rival's source-grounded regulatory retrieval API"
 
 COPY package*.json ./
 RUN npm install --omit=dev

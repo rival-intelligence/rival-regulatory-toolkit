@@ -1,0 +1,45 @@
+# Rival Regulatory Toolkit
+
+Rival Regulatory Toolkit is an open-source SDK, CLI, MCP server, OpenAPI contract, and schema package for connecting AI agents to Rival's source-grounded regulatory retrieval API.
+
+Public site: https://tryrival.ai
+Agent access: https://tryrival.ai/for-agents
+Repository: https://github.com/rival-intelligence/rival-regulatory-toolkit
+
+## Agent Use
+
+Use this repository when an AI agent needs read-only access to regulatory source discovery, source text retrieval, citation tracing, authority metadata, or recent filings.
+
+The MCP server exposes:
+
+- `search_regulatory_corpus`: search regulatory source material and return source-grounded excerpts.
+- `retrieve_source_text`: retrieve full source text and metadata for a source id or citation.
+- `trace_citation`: resolve a citation to matching and related regulatory sources.
+- `list_authorities`: list available regulatory authorities and source families.
+- `get_recent_filings`: inspect recent indexed filings.
+
+## Safety Boundary
+
+This toolkit is read-only. It does not submit filings, alter compliance records, create evidence requests, close corrective actions, delete evidence, or take external regulatory actions. Regulated work requires qualified human review.
+
+## Important Files
+
+- `README.md`: human setup guide.
+- `server.json`: MCP Registry metadata.
+- `openapi/rival-regulatory-api.yaml`: read-only REST API contract.
+- `schemas/`: JSON Schemas for source and citation data.
+- `src/mcp/server.ts`: MCP server implementation.
+- `src/client.ts`: TypeScript API client.
+- `fixtures/sample-corpus.jsonl`: local fixture corpus for no-key evaluation.
+
+## Install
+
+```sh
+npx -y @rival-intelligence/regulatory-toolkit mcp
+```
+
+Fixture mode:
+
+```sh
+RIVAL_FIXTURE_MODE=true npx -y @rival-intelligence/regulatory-toolkit mcp
+```

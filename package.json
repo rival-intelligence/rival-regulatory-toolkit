@@ -4,6 +4,7 @@
   "description": "SDK, CLI, MCP server, and schemas for Rival's source-grounded regulatory retrieval API.",
   "type": "module",
   "license": "Apache-2.0",
+  "mcpName": "io.github.rival-intelligence/rival-regulatory-toolkit",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rival-intelligence/rival-regulatory-toolkit.git"
@@ -19,7 +20,14 @@
     "mcp",
     "agents",
     "sdk",
-    "citations"
+    "citations",
+    "cfr",
+    "federal-register",
+    "phmsa",
+    "epa",
+    "energy",
+    "critical-infrastructure",
+    "regtech"
   ],
   "bin": {
     "regulatory-toolkit": "./dist/cli/index.js",

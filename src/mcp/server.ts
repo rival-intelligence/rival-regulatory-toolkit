@@ -34,7 +34,13 @@ const client = createClientFromRuntime();
 const tools = [
   {
     name: 'search_regulatory_corpus',
-    description: 'Search Rival regulatory source material and return source-grounded excerpts.',
+    title: 'Search Regulatory Corpus',
+    description: 'Search Rival regulatory source material and return source-grounded excerpts for compliance, energy, critical infrastructure, CFR, Federal Register, Texas Administrative Code, PHMSA, EPA, RRC, and other authority-aware regulatory questions.',
+    annotations: {
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+    },
     inputSchema: {
       type: 'object',
       additionalProperties: false,
@@ -50,7 +56,13 @@ const tools = [
   },
   {
     name: 'retrieve_source_text',
-    description: 'Retrieve full text and metadata for a known Rival source id or citation.',
+    title: 'Retrieve Source Text',
+    description: 'Retrieve full regulatory source text and metadata for a known Rival source id or exact citation, preserving citation, jurisdiction, authority, source family, and URL for reviewable agent outputs.',
+    annotations: {
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+    },
     inputSchema: {
       type: 'object',
       additionalProperties: false,
@@ -62,7 +74,13 @@ const tools = [
   },
   {
     name: 'trace_citation',
-    description: 'Trace a citation to matching and related regulatory source records.',
+    title: 'Trace Citation',
+    description: 'Trace a regulatory citation such as 49 CFR 195.573 or 16 TAC § 3.8 to matching and related source records so agents can ground compliance answers in authoritative source material.',
+    annotations: {
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+    },
     inputSchema: {
       type: 'object',
       additionalProperties: false,
@@ -75,7 +93,13 @@ const tools = [
   },
   {
     name: 'list_authorities',
-    description: 'List regulatory authorities available to the corpus.',
+    title: 'List Authorities',
+    description: 'List regulatory authorities, jurisdictions, domains, and source families available through the Rival corpus, including energy, critical infrastructure, and government compliance authorities.',
+    annotations: {
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+    },
     inputSchema: {
       type: 'object',
       additionalProperties: false,
@@ -87,7 +111,13 @@ const tools = [
   },
   {
     name: 'get_recent_filings',
-    description: 'Return recent filings from indexed source material.',
+    title: 'Get Recent Filings',
+    description: 'Return recent indexed filings and source records for authority-aware regulatory monitoring workflows, including Federal Register style source updates.',
+    annotations: {
+      readOnlyHint: true,
+      destructiveHint: false,
+      idempotentHint: true,
+    },
     inputSchema: {
       type: 'object',
       additionalProperties: false,
